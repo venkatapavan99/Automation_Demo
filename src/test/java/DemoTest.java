@@ -1,18 +1,17 @@
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class DemoTest {
 
     @Test
-    void testAddition() {
+    public void testAddition() {
         int result = 2 + 3;
-        assertEquals(5, result, "Addition test failed!");
+        Assert.assertEquals(result, 5, "Addition test failed");
     }
 
     @Test
-    void testSubtraction() {
-        int result = 10 - 4;
-        assertEquals(6, result, "Subtraction test failed!");
+    public void testSubtraction() {
+        int result = 5 - 3;
+        Assert.assertEquals(result, 2, "Subtraction test failed");
     }
 }
-
