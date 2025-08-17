@@ -1,23 +1,31 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class SeleniumTest {
 
-    @Test
-    public void openGoogle() {
-        // Setup Chrome driver
+    private WebDriver driver;
+
+    @BeforeClass
+    public void setUp() {
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
+    }
 
+    @Test
+    public void openGoogleTest() {
         driver.get("https://www.google.com");
-        String title = driver.getTitle();
-        System.out.println("Page Title: " + title);
+        Assert.assertEquals(driver.getTitle(), "Google", "Title mismatch!");
+    }
 
-        Assert.assertTrue(title.contains("Google"));
-
-        driver.quit();
+    @AfterClass
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
